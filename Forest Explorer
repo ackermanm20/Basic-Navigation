@@ -1,0 +1,73 @@
+#include <kipr/botball.h>
+// DECLARE VARIABLES
+int l_motor = 0; 
+int r_motor = 3; 
+int speed = 75;
+int turnspeed = 100;
+int pause = 3500;
+int spinpause = 3000;
+int counter = 0;
+ // stored ints
+
+int main() {
+  shut_down_in (300.0);
+  printf("Starting Run\n");	
+  while (1) { // while loop always true
+    	forward();
+  		if(digital(0)) {
+			backward();
+    		rightTurn();
+          counter = counter ++;
+ 		 }
+  		if(digital(9)){ //if right bumper is hit, turn left
+    		backward();
+    		leftTurn();
+          counter = counter ++;
+  		}
+      if(counter == 3){ //counter for evasive maneuver
+        	spin();
+        counter = 0;
+} 
+}
+}
+// functions
+  void forward() {
+    motor(l_motor,speed);
+    motor(r_motor,speed);
+    
+
+  }
+  void backward() {
+      motor(l_motor,-speed);
+      motor(r_motor,-speed);
+      msleep(pause);
+    	ao();
+    }
+ void rightTurn() {
+   		motor(l_motor,turnspeed);
+   		motor(r_motor,-turnspeed);
+   		msleep(pause);
+    counter ++;
+  		 ao();
+ }
+  void leftTurn(){
+    motor(r_motor,turnspeed);
+    motor(l_motor,-turnspeed);
+    msleep(pause);
+    counter ++;
+    ao();
+  }       
+  	void spin(){
+     motor(r_motor,turnspeed);
+      motor(l_motor,-turnspeed);
+      msleep(spinpause);
+       ao();
+    }
+	
+	void evasive(){
+     motor(l_motor, -turnspeed); 
+     motor(r_motor, -turnspeed);  
+     msleep(pause);
+     counter = (0); 
+      ao(); 
+    }
