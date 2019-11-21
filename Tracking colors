@@ -21,12 +21,12 @@ printf("Red xpos = %d\n", get_object_center_x(red, 0));
 
 if(get_object_center_x(red, 0) < 80) {
 printf("Red on left side");
-veerLeft();
+leftVeer();
 }
 
 if(get_object_center_x(red, 0) > 80) {
 printf("Red on right side");
-veerRight();
+rightVeer();
 }
 
 
