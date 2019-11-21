@@ -1,0 +1,46 @@
+#include <kipr/botball.h>
+
+//Variables
+int l_motor = 0;
+int r_motor = 3;
+int veer = 25;
+int speed = 75;
+int green = 0;
+int blue = 1;
+int red = 2;
+
+int main() {
+camera_open();
+
+while(1) {
+camera_update();
+
+if(get_object_count(red) > 0){
+printf("Number of red = %d\n", get_object_count(red));
+printf("Red xpos = %d\n", get_object_center_x(red, 0));
+
+if(get_object_center_x(red, 0) < 79 {
+printf("Red on right side");
+veerLeft();
+}
+
+if(get_object_center_x(red, 0) > 79 {
+printf("Red on left side");
+veerRight();
+}
+}
+
+//Functions
+void rightVeer(){
+printf("Veering right \n");
+motor(r_motor, veer);
+motor(l_motor, speed);
+ao();
+}
+
+void leftVeer(){
+printf("Veering left \n");
+motor(r_motor, speed);
+motor(l_motor, veer);
+ao();
+}
