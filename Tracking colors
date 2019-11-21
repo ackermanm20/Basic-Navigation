@@ -24,10 +24,13 @@ printf("Red on right side");
 veerLeft();
 }
 
-if(get_object_center_x(red, 0) > 79 {
+if(get_object_center_x(red, 0) > 79) {
 printf("Red on left side");
 veerRight();
 }
+
+if(get_object_center_y(red, 0) > 60) {
+shut_down_in(0);
 }
 }
 }
@@ -37,12 +40,10 @@ void rightVeer(){
 printf("Veering right \n");
 motor(r_motor, veer);
 motor(l_motor, speed);
-ao();
 }
 
 void leftVeer(){
 printf("Veering left \n");
 motor(r_motor, speed);
 motor(l_motor, veer);
-ao();
 }
