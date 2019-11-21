@@ -1,0 +1,17 @@
+#include <kipr/botball.h>
+//Variables
+int green = 0;
+int blue = 1;
+int red = 2;
+
+int main() {
+
+camera_open();
+while(1){
+camera_update();
+printf("number of green = %d\n", get_object_count(green));
+printf("number of blue = %d\n", get_object_count(blue));
+printf("number of red = %d\n", get_object_count(red));
+}
+}
+
