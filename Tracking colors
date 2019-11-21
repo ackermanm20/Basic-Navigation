@@ -29,6 +29,8 @@ printf("Red on left side");
 veerRight();
 }
 }
+}
+}
 
 //Functions
 void rightVeer(){
