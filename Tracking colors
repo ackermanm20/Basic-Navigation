@@ -4,7 +4,7 @@
 int l_motor = 0;
 int r_motor = 3;
 int veer = 25;
-int speed = 75;
+int speed = 50;
 int green = 0;
 int blue = 1;
 int red = 2;
@@ -19,31 +19,29 @@ if(get_object_count(red) > 0){
 printf("Number of red = %d\n", get_object_count(red));
 printf("Red xpos = %d\n", get_object_center_x(red, 0));
 
-if(get_object_center_x(red, 0) < 79 {
-printf("Red on right side");
+if(get_object_center_x(red, 0) < 80) {
+printf("Red on left side");
 veerLeft();
 }
 
-if(get_object_center_x(red, 0) > 79) {
-printf("Red on left side");
+if(get_object_center_x(red, 0) > 80) {
+printf("Red on right side");
 veerRight();
 }
 
-if(get_object_center_y(red, 0) > 60) {
-shut_down_in(0);
-}
+
 }
 }
 
 //Functions
 void rightVeer(){
 printf("Veering right \n");
-motor(r_motor, veer);
+motor(r_motor, -speed);
 motor(l_motor, speed);
 }
 
 void leftVeer(){
 printf("Veering left \n");
 motor(r_motor, speed);
-motor(l_motor, veer);
+motor(l_motor, -speed);
 }
