@@ -1,57 +1,109 @@
 #include <kipr/botball.h>
+int l_motor = 0; // left motor port
+int r_motor = 3; // right motor port
+int speed = 85;  // motor speed
+int r_sensor = 0; // right sensor port
+int l_sensor = 5; // left sensor port
+int d_sensor = 2; // distance sensor port
+int yellow = 0; // color channel 0
+int red = 1; // color channel 1
+int servo = 0;
+int pause = 1000; 
+int close = 995;
+int open = 488;
+int slow = 30;
+int fast = 120;
 
-// DECLARE VARIABLES
+int main(){
+  	printf("Code starts \n"); 	// main code
+	forward(); 
+  	leftTurn(); 
+  	followline();
+   // BurnBuilding();
+  	// claw();
+	printf("Code ends \n");
 
-int l_motor = 0; 
-int r_motor = 3; 
-int speed = 50;
-
-int main() {
-
-  printf("Starting Run\n");	
-  while (1) { 
-    forward();
-  		if(digital(0)) {
-			backward();
-    		rightTurn();
-          counter = counter ++;
- 		 }
-  		if(digital(9)){ //if right bumper is hit, turn left
-    		backward();
-    		leftTurn();
-          counter = counter ++;
-  		}
 }
-// functions
-void findline(){
-printf("Finding line
-	while (analog(l_sensor) < 50){
-	  forward(); 
+
+
+
+// Function Definitions
+
+void leftTurn(){
+printf("going left \n");
+	motor(l_motor, speed);
+    motor(r_motor, -speed);
+  	msleep(1350); 
+}
+void forward(){
+printf("going forward \n");
+	motor(l_motor, speed);
+	motor(r_motor, speed);
+	msleep(3500);
+}
+
+void Distance(){
+while (analog(d_sensor) < 2500 ){
+	forward();
 }
   ao();
 }
-  void forward() {
-    motor(l_motor,speed);
-    motor(r_motor,speed);
-  }
+
+void claw(){
+enable_servos();
+set_servo_position(0,close);
+msleep(2000);
+set_servo_position(0,open);
+msleep(3000);
+set_servo_position(0, close);
+msleep(3000);
+set_servo_position(0,open);
+msleep(3000);
+}
+
+v
+// void BurnBuilding(){
+
+//	while (analog(l_sensor) < 85 ){
+
+	//forward();
   
-  void backward() {
-      motor(l_motor,-speed);
-      motor(r_motor,-speed);
-      msleep(pause);
-    	ao();
+// }  
+ 
+// ao();
+
+//	while(analog(l_sensor) > 40) {
+ // forward();
+// }
+ // ao();
+ // if(analog(l_sensor) < 85) {
+ //	leftTurn();
+  //  followline();
+ // }
+ // }
+
+
+void followline() {
+printf("Following line \n");
+	while (analog(r_sensor) < 1600) { 
+	if(analog(l_sensor) > 85 ){
+    rightVeer();
+}
+	if(analog(l_sensor) < 85) {
+      leftVeer();
     }
- void rightTurn() {
-   		motor(l_motor,turnspeed);
-   		motor(r_motor,-turnspeed);
-   		msleep(pause);
-    counter ++;
-  		 ao();
+} 
+  ao();
+}
+
+void leftVeer(){
+printf("Veering left \n");
+	motor(r_motor, fast);
+	motor(l_motor, slow);
  }
-  void leftTurn(){
-    motor(r_motor,turnspeed);
-    motor(l_motor,-turnspeed);
-    msleep(pause);
-    counter ++;
-    ao();
-  }       
+void rightVeer(){
+printf("Veering right \n");
+	motor(r_motor, slow);
+	motor(l_motor, fast);
+  
+}
