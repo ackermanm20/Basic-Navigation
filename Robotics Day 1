@@ -1,7 +1,7 @@
 // Created on Thu March 19 2020
 int l_motor = 0;  // variables
 int r_motor = 2;
-int speed = 100;
+int speed = 20;
 int counter = 0; // counter
 int main()
 {
